@@ -7,43 +7,55 @@ public class WestminsterShoppingManager implements ShoppingManager {
     private static ArrayList<Product> productList = new ArrayList<>();
 
     public static void main(String[] args) {
-       int choice;
-        do{
-            choice = displayManu();
-        switch(choice){
-            case(1):
-                addProduct();
-                break;
-            case(2):
-                deleteProduct();
-                break;
-            case(3):
-                printProductList();
-                break;
-            case(4):
-                saveToFile();
-                break;
-            case(5):
-                break;
-            default:
-            System.out.println("invalid choice");
-        }}while(choice != 5);
+        WestminsterShoppingManager classObj = new WestminsterShoppingManager();
+        classObj.selectOption();
+
+
 
 
     }
-    public static int displayManu(){
+    public void selectOption(){
+        int choice;
+        do{
+            choice = displayManu();
+            switch(choice){
+                case(1):
+                    addProduct();
+                    break;
+                case(2):
+                    deleteProduct();
+                    break;
+                case(3):
+                    printProductList();
+                    break;
+                case(4):
+                    saveToFile();
+                    break;
+                case(5):
+                    loadFromFile();
+                    break;
+                case(6):
+                    break;
+                default:
+                    System.out.println("invalid choice");
+            }}while(choice != 6);
+    }
+    public  int displayManu(){
         System.out.println("     WestminsterShoppingManager     ");
         System.out.println("     1. Add product");
         System.out.println("     2. Delete product");
         System.out.println("     3. print list of products");
         System.out.println("     4. saveToFile");
+        System.out.println("     5. loadFromFile");
+        System.out.println("     6. exit");
+
 
         System.out.println("Enter your choice");
         int choice = obj.nextInt();
         return choice ;
 
     }
-    public static void addProduct(){
+    public  void addProduct(){
 
         System.out.println("if product is electronic enter 1 , clothing enter 2");
         int productType = obj.nextInt();
@@ -81,7 +93,7 @@ public class WestminsterShoppingManager implements ShoppingManager {
 
     }
 
-    public static void deleteProduct()
+    public  void deleteProduct()
     {
         System.out.println("enter productID that you what to delete");
         String productID = obj.nextLine();
@@ -94,7 +106,7 @@ public class WestminsterShoppingManager implements ShoppingManager {
                 break;
             }}
     }
-    public static void printProductList()
+    public  void printProductList()
     {
         if (productList.isEmpty()) {
             System.out.println("Product list is empty.");
@@ -106,7 +118,7 @@ public class WestminsterShoppingManager implements ShoppingManager {
         }
     }
 
-    public static void saveToFile() {
+    public  void saveToFile() {
         try (FileOutputStream fileOut = new FileOutputStream("productList.ser");
              ObjectOutputStream objectOut = new ObjectOutputStream(fileOut)) {
 
@@ -118,7 +130,7 @@ public class WestminsterShoppingManager implements ShoppingManager {
         }
     }
 
-    public static void loadFromFile() {
+    public  void loadFromFile() {
         try (FileInputStream fileIn = new FileInputStream("productList.ser");
              ObjectInputStream objectIn = new ObjectInputStream(fileIn)) {
 
